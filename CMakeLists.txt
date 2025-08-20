@@ -5,8 +5,8 @@ project(REFERENCE CXX)
 include(cmake/flags.cmake)
 
 add_compile_options(
-    $<$<CONFIG:Debug>:${DEBUG_FLAGS}>
-    $<$<CONFIG:Release>:${RELEASE_FLAGS}>
+    "$<$<CONFIG:Debug>:${DEBUG_FLAGS}>"
+    "$<$<CONFIG:Release>:${RELEASE_FLAGS}>"
 )
 
 find_package(GTest CONFIG REQUIRED)
