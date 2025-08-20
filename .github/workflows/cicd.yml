@@ -20,11 +20,12 @@ jobs:
           - { name: x64-windows-clang, runs_on: windows-2025     }
 
     runs-on: ${{ matrix.runs_on }}
-    env:
-      VCPKG_ROOT: ${{ github.env.VCPKG_INSTALLATION_ROOT }}
 
     steps:
       - uses: actions/checkout@v4
+      - name: Set VCPKG_ROOT
+        shell: bash
+        run: echo "VCPKG_ROOT=$VCPKG_INSTALLATION_ROOT" >> "$GITHUB_ENV"
       - name: Configure & build (${{ matrix.name }})
         run: |
           cmake --preset ${{ matrix.name }}
