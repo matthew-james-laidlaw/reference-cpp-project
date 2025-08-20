@@ -7,7 +7,8 @@
             "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
             "binaryDir": "build/${presetName}",
             "cacheVariables": {
-                "TARGET_TRIPLE": "${presetName}"
+                "TARGET_TRIPLE": "${presetName}",
+                "CPACK_INCLUDE_TOPLEVEL_DIRECTORY": "OFF"
             }
         },
         {
