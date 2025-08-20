@@ -30,4 +30,11 @@ jobs:
         run: |
           cmake --preset ${{ matrix.name }}
           cmake --build --preset ${{ matrix.name }} --config Release
-          ctest --preset ${{ matrix.name }}
+          ctest --preset ${{ matrix.name }} --config Release
+          cpack --preset ${{ matrix.name }} --config Release
+      - name: Package (${{ matrix.name }})
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{matrix.name }}
+          path: artifacts/${{ matrix.name }}/${{ matrix.name }}*.zip
+          if-no-files-found: error
