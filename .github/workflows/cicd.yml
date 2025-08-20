@@ -20,6 +20,8 @@ jobs:
           - { name: x64-windows-clang, runs_on: windows-2025     }
 
     runs-on: ${{ matrix.runs_on }}
+    env:
+      VCPKG_ROOT: ${{ github.env.VCPKG_INSTALLATION_ROOT }}
 
     steps:
       - uses: actions/checkout@v4
@@ -28,5 +30,3 @@ jobs:
           cmake --preset ${{ matrix.name }}
           cmake --build --preset ${{ matrix.name }}
           ctest --preset ${{ matrix.name }}
-        env:
-          VCPKG_ROOT: ${{ env.VCPKG_INSTALLATION_ROOT }}
