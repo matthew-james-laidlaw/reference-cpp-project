@@ -1,0 +1,33 @@
+name: cicd
+
+on: [ push, pull_request, workflow_dispatch ]
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: arm64-apple-clang
+            runs_on: macos-latest
+            preset: arm64-apple-clang
+          - name: x64-linux-clang
+            runs_on: ubuntu-latest
+            preset: x64-linux-clang
+          - name: x64-linux-gnu
+            runs_on: ubuntu-latest
+            preset: x64-linux-gnu
+          - name: x64-windows-msvc
+            runs_on: windows-latest
+            preset: x64-windows-msvc
+          - name: x64-windows-clang
+            runs_on: windows-latest
+            preset: x64-windows-clang
+
+    runs-on: ${{ matrix.runs_on }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure & build (${{ matrix.preset }})
+        run: cmake --workflow --preset ${{ matrix.preset }}
