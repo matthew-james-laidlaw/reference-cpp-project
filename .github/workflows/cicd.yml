@@ -9,28 +9,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: arm64-apple-clang
-            runs_on: macos-latest
-            preset: arm64-apple-clang
-          - name: x64-linux-clang
-            runs_on: ubuntu-latest
-            preset: x64-linux-clang
-          - name: x64-linux-gnu
-            runs_on: ubuntu-latest
-            preset: x64-linux-gnu
-          - name: x64-windows-msvc
-            runs_on: windows-latest
-            preset: x64-windows-msvc
-          - name: x64-windows-clang
-            runs_on: windows-latest
-            preset: x64-windows-clang
+          - { name: arm64-apple-clang, runs_on: macos-latest   }
+          - { name: x64-linux-clang,   runs_on: ubuntu-latest  }
+          - { name: x64-linux-gnu,     runs_on: ubuntu-latest  }
+          - { name: x64-windows-msvc,  runs_on: windows-latest }
+          - { name: x64-windows-clang, runs_on: windows-latest }
 
     runs-on: ${{ matrix.runs_on }}
 
     steps:
       - uses: actions/checkout@v4
-      - name: Configure & build (${{ matrix.preset }})
+      - name: Configure & build (${{ matrix.name }})
         run: |
-          cmake --preset ${{ matrix.preset }}
-          cmake --build --preset ${{ matrix.preset }}
-          ctest --preset ${{ matrix.preset }}
+          cmake --preset ${{ matrix.name }}
+          cmake --build --preset ${{ matrix.name }}
+          ctest --preset ${{ matrix.name }}
