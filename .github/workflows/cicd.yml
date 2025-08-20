@@ -23,6 +23,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: printenv
+        run: printenv
       - name: Configure & build (${{ matrix.name }})
         run: |
           cmake --preset ${{ matrix.name }}
