@@ -29,5 +29,5 @@ jobs:
       - name: Configure & build (${{ matrix.name }})
         run: |
           cmake --preset ${{ matrix.name }}
-          cmake --build --preset ${{ matrix.name }}
+          cmake --build --preset ${{ matrix.name }} --config Release
           ctest --preset ${{ matrix.name }}
