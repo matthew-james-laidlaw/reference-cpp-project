@@ -26,13 +26,20 @@ jobs:
       - name: Set VCPKG_ROOT
         shell: bash
         run: echo "VCPKG_ROOT=$VCPKG_INSTALLATION_ROOT" >> "$GITHUB_ENV"
-      - name: Configure & build (${{ matrix.name }})
-        run: |
-          cmake --preset ${{ matrix.name }}
-          cmake --build --preset ${{ matrix.name }} --config Release
-          ctest --preset ${{ matrix.name }} --config Release
-          cpack --preset ${{ matrix.name }} --config Release
-      - name: Package (${{ matrix.name }})
+
+      - name: Configure ${{ matrix.name }}
+        run: cmake --preset ${{ matrix.name }}
+
+      - name: Build ${{ matrix.name }}
+        run: cmake --build --preset ${{ matrix.name }} --config Release
+
+      - name: Test ${{ matrix.name }}
+        run: ctest --preset ${{ matrix.name }} --config Release
+
+      - name: Package ${{ matrix.name }}
+        run: cpack --preset ${{ matrix.name }} --config Release
+
+      - name: Upload (${{ matrix.name }})
         uses: actions/upload-artifact@v4
         with:
           name: ${{matrix.name }}
