@@ -1,12 +1,13 @@
 #include <arithmetic.hpp>
 
-#include <print>
+#include <format>
+#include <iostream>
 
 auto main() -> int
 {
-    std::println("1 + 2 = {}", arithmetic::add(1, 2));
-    std::println("3 - 2 = {}", arithmetic::sub(3, 2));
-    std::println("2 * 3 = {}", arithmetic::mul(2, 3));
-    std::println("6 / 3 = {}", arithmetic::div(6, 3));
+    std::cout << std::format("1 + 2 = {}", arithmetic::add(1, 2)) << std::endl;
+    std::cout << std::format("3 - 2 = {}", arithmetic::sub(3, 2)) << std::endl;
+    std::cout << std::format("2 * 3 = {}", arithmetic::mul(2, 3)) << std::endl;
+    std::cout << std::format("6 / 3 = {}", arithmetic::div(6, 3)) << std::endl;
     return 0;
 }
