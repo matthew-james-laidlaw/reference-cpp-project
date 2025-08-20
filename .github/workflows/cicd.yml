@@ -30,4 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Configure & build (${{ matrix.preset }})
-        run: cmake --workflow --preset ${{ matrix.preset }}
+        run: |
+          cmake --preset ${{ matrix.preset }}
+          cmake --build --preset ${{ matrix.preset }}
+          ctest --preset ${{ matrix.preset }}

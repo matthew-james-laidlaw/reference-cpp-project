@@ -4,7 +4,7 @@
         {
             "name": "base",
             "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-            "binaryDir": "build"
+            "binaryDir": "build/${presetName}"
         },
         {
             "name": "arm64-apple-clang",
@@ -33,5 +33,19 @@
             "generator": "Visual Studio 17 2022",
             "toolset": "v143"
         }
+    ],
+    "buildPresets": [
+        { "name": "arm64-apple-clang", "configurePreset": "arm64-apple-clang", "configuration": "Release" },
+        { "name": "x64-linux-clang",   "configurePreset": "x64-linux-clang",   "configuration": "Release" },
+        { "name": "x64-linux-gnu",     "configurePreset": "x64-linux-gnu",     "configuration": "Release" },
+        { "name": "x64-windows-clang", "configurePreset": "x64-windows-clang", "configuration": "Release" },
+        { "name": "x64-windows-msvc",  "configurePreset": "x64-windows-msvc",  "configuration": "Release" }
+    ],
+    "testPresets": [
+        { "name": "arm64-apple-clang", "configurePreset": "arm64-apple-clang", "configuration": "Release" },
+        { "name": "x64-linux-clang",   "configurePreset": "x64-linux-clang",   "configuration": "Release" },
+        { "name": "x64-linux-gnu",     "configurePreset": "x64-linux-gnu",     "configuration": "Release" },
+        { "name": "x64-windows-clang", "configurePreset": "x64-windows-clang", "configuration": "Release" },
+        { "name": "x64-windows-msvc",  "configurePreset": "x64-windows-msvc",  "configuration": "Release" }
     ]
 }

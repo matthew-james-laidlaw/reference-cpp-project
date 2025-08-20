@@ -1,0 +1,7 @@
+macro(assign_bool var)
+     if(${ARGN})
+         set(${var} ON)
+     else()
+         set(${var} OFF)
+     endif()
+endmacro()
