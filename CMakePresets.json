@@ -26,7 +26,7 @@
             }
         },
         {
-            "name": "arm64-linux-gnu",  
+            "name": "arm64-linux-gnu",
             "inherits": "base",
             "generator": "Ninja Multi-Config",
             "cacheVariables": {
@@ -40,7 +40,7 @@
             "generator": "Xcode"
         },
         {
-            "name": "x64-linux-clang",  
+            "name": "x64-linux-clang",
             "inherits": "base",
             "generator": "Ninja Multi-Config",
             "cacheVariables": {
@@ -49,7 +49,7 @@
             }
         },
         {
-            "name": "x64-linux-gnu",    
+            "name": "x64-linux-gnu",
             "inherits": "base",
             "generator": "Ninja Multi-Config",
             "cacheVariables": {
@@ -69,49 +69,5 @@
             "generator": "Visual Studio 17 2022",
             "toolset": "v143"
         }
-    ],
-    "buildPresets": [
-        { "name": "arm64-apple-clang", "configurePreset": "arm64-apple-clang" },
-        { "name": "arm64-linux-clang", "configurePreset": "arm64-linux-clang" },
-        { "name": "arm64-linux-gnu",   "configurePreset": "arm64-linux-gnu"   },
-        { "name": "x64-apple-clang",   "configurePreset": "x64-apple-clang"   },
-        { "name": "x64-linux-clang",   "configurePreset": "x64-linux-clang"   },
-        { "name": "x64-linux-gnu",     "configurePreset": "x64-linux-gnu"     },
-        { "name": "x64-windows-clang", "configurePreset": "x64-windows-clang" },
-        { "name": "x64-windows-msvc",  "configurePreset": "x64-windows-msvc"  }
-    ],
-    "testPresets": [
-        {
-            "name": "base",
-            "hidden": true,
-            "execution": {
-                "noTestsAction": "error",
-                "stopOnFailure": false
-            }
-        },
-        { "name": "arm64-apple-clang", "inherits": "base", "configurePreset": "arm64-apple-clang" },
-        { "name": "arm64-linux-clang", "inherits": "base", "configurePreset": "arm64-linux-clang" },
-        { "name": "arm64-linux-gnu",   "inherits": "base", "configurePreset": "arm64-linux-gnu"   },
-        { "name": "x64-apple-clang",   "inherits": "base", "configurePreset": "x64-apple-clang"   },
-        { "name": "x64-linux-clang",   "inherits": "base", "configurePreset": "x64-linux-clang"   },
-        { "name": "x64-linux-gnu",     "inherits": "base", "configurePreset": "x64-linux-gnu"     },
-        { "name": "x64-windows-clang", "inherits": "base", "configurePreset": "x64-windows-clang" },
-        { "name": "x64-windows-msvc",  "inherits": "base", "configurePreset": "x64-windows-msvc"  }
-    ],
-    "packagePresets": [
-        {
-            "name": "base",
-            "hidden": true,
-            "generators": [ "ZIP" ],
-            "packageDirectory": "${sourceDir}/artifacts/${presetName}"
-        },
-        { "name": "arm64-apple-clang", "inherits": "base", "configurePreset": "arm64-apple-clang" },
-        { "name": "arm64-linux-clang", "inherits": "base", "configurePreset": "arm64-linux-clang" },
-        { "name": "arm64-linux-gnu",   "inherits": "base", "configurePreset": "arm64-linux-gnu"   },
-        { "name": "x64-apple-clang",   "inherits": "base", "configurePreset": "x64-apple-clang"   },
-        { "name": "x64-linux-clang",   "inherits": "base", "configurePreset": "x64-linux-clang"   },
-        { "name": "x64-linux-gnu",     "inherits": "base", "configurePreset": "x64-linux-gnu"     },
-        { "name": "x64-windows-clang", "inherits": "base", "configurePreset": "x64-windows-clang" },
-        { "name": "x64-windows-msvc",  "inherits": "base", "configurePreset": "x64-windows-msvc"  }
     ]
 }

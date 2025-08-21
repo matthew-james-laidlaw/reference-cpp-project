@@ -9,7 +9,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-
           - { name: arm64-apple-clang, runs_on: macos-15         }
           - { name: arm64-linux-clang, runs_on: ubuntu-24.04-arm }
           - { name: arm64-linux-gnu,   runs_on: ubuntu-24.04-arm }
@@ -31,13 +30,13 @@ jobs:
         run: cmake --preset ${{ matrix.name }}
 
       - name: Build ${{ matrix.name }}
-        run: cmake --build --preset ${{ matrix.name }} --config Release --parallel
+        run: cmake --build build/${{ matrix.name }} --config Release --parallel
 
       - name: Test ${{ matrix.name }}
-        run: ctest --preset ${{ matrix.name }} --build-config Release --parallel
+        run: ctest --test-dir build/${{ matrix.name }} --build-config Release --parallel
 
       - name: Package ${{ matrix.name }}
-        run: cpack --preset ${{ matrix.name }} -C Release
+        run: cpack -G ZIP --config build/${{ matrix.name }}/CPackConfig.cmake -B artifacts/${{ matrix.name }} -C Release
 
       - name: Upload (${{ matrix.name }})
         uses: actions/upload-artifact@v4
