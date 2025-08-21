@@ -27,5 +27,5 @@ add_subdirectory(apps)
 set(CPACK_PACKAGE_VERSION "0.1.0")
 set(CPACK_PACKAGE_FILE_NAME "${TARGET_TRIPLE}-${CPACK_PACKAGE_VERSION}")
 
-install(TARGETS arithmetic calculator RUNTIME DESTINATION bin)
+install(TARGETS arithmetic calculator)
 include(CPack)
