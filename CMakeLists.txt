@@ -14,9 +14,14 @@ find_package(GTest CONFIG REQUIRED)
 enable_testing()
 include(GoogleTest)
 
+add_executable(unit_tests)
+target_link_libraries(unit_tests GTest::gtest_main)
+
 set(CMAKE_CXX_STANDARD 23)
 
 add_subdirectory(libs)
+gtest_discover_tests(unit_tests)
+
 add_subdirectory(apps)
 
 set(CPACK_PACKAGE_VERSION "0.1.0")

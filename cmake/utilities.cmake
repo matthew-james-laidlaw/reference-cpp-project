@@ -5,3 +5,16 @@ macro(assign_bool var)
          set(${var} OFF)
      endif()
 endmacro()
+
+function(reference_add_library)
+    set(options)
+    set(oneValueArgs TARGET)
+    set(multiValueArgs SOURCES TESTS)
+    cmake_parse_arguments(DMRC "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    add_library(${DMRC_TARGET} ${DMRC_SOURCES})
+    target_include_directories(${DMRC_TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+    target_sources(unit_tests PRIVATE ${DMRC_TESTS})
+    target_link_libraries(unit_tests ${DMRC_TARGET})
+endfunction()
