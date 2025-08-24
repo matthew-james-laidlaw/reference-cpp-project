@@ -2,30 +2,25 @@ cmake_minimum_required(VERSION 3.29.3)
 
 project(REFERENCE CXX)
 
-include(cmake/flags.cmake)
-
-add_compile_options(
-    "$<$<CONFIG:Debug>:${DEBUG_FLAGS}>"
-    "$<$<CONFIG:Release>:${RELEASE_FLAGS}>"
-)
-
-find_package(GTest CONFIG REQUIRED)
-
-enable_testing()
+# third party includes
 include(GoogleTest)
 
+# internal includes
+include(${PROJECT_SOURCE_DIR}/cmake/modules/flags.cmake)
+
+# vcpkg packages
+find_package(GTest CONFIG REQUIRED)
+
+# cmake cxx variables
+set(CMAKE_CXX_STANDARD 23)
+
+# initialize test executable
 add_executable(unit_tests)
 target_link_libraries(unit_tests GTest::gtest_main)
 
-set(CMAKE_CXX_STANDARD 23)
-
+# set up library and executable targets
 add_subdirectory(libs)
-gtest_discover_tests(unit_tests)
-
 add_subdirectory(apps)
 
-set(CPACK_PACKAGE_VERSION "0.1.0")
-set(CPACK_PACKAGE_FILE_NAME "${TARGET_TRIPLE}-${CPACK_PACKAGE_VERSION}")
-
-install(TARGETS arithmetic calculator)
-include(CPack)
+# finalize test executable
+gtest_discover_tests(unit_tests)

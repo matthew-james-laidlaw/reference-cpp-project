@@ -31,10 +31,10 @@ jobs:
         run: echo "VCPKG_ROOT=$VCPKG_INSTALLATION_ROOT" >> "$GITHUB_ENV"
 
       - name: Configure
-        run: cmake --preset ${{ matrix.name }}
+        run: cmake --preset ${{ matrix.name }} -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
-        run: cmake --build build/${{ matrix.name }} --config Release --parallel
+        run: cmake --build build/${{ matrix.name }} --config Release --target all --parallel
 
       - name: Test
         run: ctest --test-dir build/${{ matrix.name }} --build-config Release --parallel
