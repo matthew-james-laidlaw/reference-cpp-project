@@ -24,3 +24,6 @@ add_subdirectory(apps)
 
 # finalize test executable
 gtest_discover_tests(unit_tests)
+
+include(CPack)
+set(CPACK_PACKAGE_FILE_NAME "${TARGET_TRIPLE}-${CPACK_PACKAGE_VERSION}")
