@@ -1,6 +1,6 @@
-set(TARGET_ARCHITECTURE     arm64)
+set(TARGET_ARCHITECTURE arm64)
 set(TARGET_OPERATING_SYSTEM macos)
-set(TARGET_COMPILER         clang)
+set(TARGET_COMPILER clang)
 
-set(CMAKE_C_COMPILER   clang  )
+set(CMAKE_C_COMPILER clang)
 set(CMAKE_CXX_COMPILER clang++)

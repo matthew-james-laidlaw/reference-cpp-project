@@ -30,19 +30,19 @@ jobs:
         shell: bash
         run: echo "VCPKG_ROOT=$VCPKG_INSTALLATION_ROOT" >> "$GITHUB_ENV"
 
-      - name: Configure ${{ matrix.name }}
+      - name: Configure
         run: cmake --preset ${{ matrix.name }}
 
-      - name: Build ${{ matrix.name }}
+      - name: Build
         run: cmake --build build/${{ matrix.name }} --config Release --parallel
 
-      - name: Test ${{ matrix.name }}
+      - name: Test
         run: ctest --test-dir build/${{ matrix.name }} --build-config Release --parallel
 
-      - name: Package ${{ matrix.name }}
+      - name: Package
         run: cpack -G ZIP --config build/${{ matrix.name }}/CPackConfig.cmake -B artifacts/${{ matrix.name }} -C Release
 
-      - name: Upload (${{ matrix.name }})
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: ${{matrix.name }}
