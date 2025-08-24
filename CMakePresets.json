@@ -8,7 +8,8 @@
             "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
             "binaryDir": "build/${presetName}",
             "cacheVariables": {
-                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/${presetName}.cmake",
+                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE":   "${sourceDir}/cmake/toolchains/${presetName}.cmake",
+                "CPACK_PACKAGE_FILE_NAME":          "${presetName}",
                 "CPACK_INCLUDE_TOPLEVEL_DIRECTORY": "OFF"
             }
         },
