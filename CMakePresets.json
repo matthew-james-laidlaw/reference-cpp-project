@@ -1,73 +1,28 @@
 {
     "version": 8,
     "configurePresets": [
+
         {
             "name": "base",
             "hidden": true,
             "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
             "binaryDir": "build/${presetName}",
             "cacheVariables": {
-                "TARGET_TRIPLE": "${presetName}",
+                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/${presetName}.cmake",
                 "CPACK_INCLUDE_TOPLEVEL_DIRECTORY": "OFF"
             }
         },
-        {
-            "name": "arm64-apple-clang",
-            "inherits": "base",
-            "generator": "Xcode"
-        },
-        {
-            "name": "arm64-linux-clang",
-            "inherits": "base",
-            "generator": "Ninja Multi-Config",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "clang",
-                "CMAKE_CXX_COMPILER": "clang++"
-            }
-        },
-        {
-            "name": "arm64-linux-gnu",
-            "inherits": "base",
-            "generator": "Ninja Multi-Config",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "gcc",
-                "CMAKE_CXX_COMPILER": "g++"
-            }
-        },
-        {
-            "name": "x64-apple-clang",  
-            "inherits": "base",
-            "generator": "Xcode"
-        },
-        {
-            "name": "x64-linux-clang",
-            "inherits": "base",
-            "generator": "Ninja Multi-Config",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "clang",
-                "CMAKE_CXX_COMPILER": "clang++"
-            }
-        },
-        {
-            "name": "x64-linux-gnu",
-            "inherits": "base",
-            "generator": "Ninja Multi-Config",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "gcc",
-                "CMAKE_CXX_COMPILER": "g++"
-            }
-        },
-        {
-            "name": "x64-windows-clang",
-            "inherits": "base",
-            "generator": "Visual Studio 17 2022",
-            "toolset": "ClangCL"
-        },
-        {
-            "name": "x64-windows-msvc", 
-            "inherits": "base",
-            "generator": "Visual Studio 17 2022",
-            "toolset": "v143"
-        }
+
+        { "name": "arm64-linux-clang",   "inherits": [ "base" ] },
+        { "name": "arm64-linux-gnu",     "inherits": [ "base" ] },
+        { "name": "arm64-macos-clang",   "inherits": [ "base" ] },
+        { "name": "arm64-windows-clang", "inherits": [ "base" ] },
+        { "name": "arm64-windows-msvc",  "inherits": [ "base" ] },
+        { "name": "x64-linux-clang",     "inherits": [ "base" ] },
+        { "name": "x64-linux-gnu",       "inherits": [ "base" ] },
+        { "name": "x64-macos-clang",     "inherits": [ "base" ] },
+        { "name": "x64-windows-clang",   "inherits": [ "base" ] },
+        { "name": "x64-windows-msvc",    "inherits": [ "base" ] }
+
     ]
 }

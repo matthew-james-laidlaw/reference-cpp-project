@@ -1,0 +1,6 @@
+set(TARGET_ARCHITECTURE     x64    )
+set(TARGET_OPERATING_SYSTEM windows)
+set(TARGET_COMPILER         msvc   )
+
+set(CMAKE_C_COMPILER   cl)
+set(CMAKE_CXX_COMPILER cl)
