@@ -41,7 +41,7 @@ jobs:
         run: ctest --test-dir build/${{ matrix.name }} --build-config Release --parallel
 
       - name: Package
-        run: cpack -G ZIP --config build/${{ matrix.name }}/CPackConfig.cmake -B artifacts/${{ matrix.name }} -C Release
+        run: cpack -G ZIP --config build/${{ matrix.name }}/CPackConfig.cmake -B artifacts/${{ matrix.name }} -C Release --no-tests=error
 
       - name: Upload
         uses: actions/upload-artifact@v4
