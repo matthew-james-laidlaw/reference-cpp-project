@@ -9,21 +9,22 @@
             "binaryDir": "build/${presetName}",
             "cacheVariables": {
                 "CPACK_INCLUDE_TOPLEVEL_DIRECTORY": "OFF",
-                "TARGET_TRIPLE":                    "${presetName}",
-                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE":   "${sourceDir}/cmake/toolchains/${presetName}.cmake"
+                "TARGET_TRIPLE": "${presetName}",
+                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/${presetName}.cmake"
             }
         },
 
-        { "name": "arm64-linux-clang",   "inherits": [ "base" ] },
-        { "name": "arm64-linux-gnu",     "inherits": [ "base" ] },
-        { "name": "arm64-macos-clang",   "inherits": [ "base" ] },
-        { "name": "arm64-windows-clang", "inherits": [ "base" ] },
-        { "name": "arm64-windows-msvc",  "inherits": [ "base" ] },
-        { "name": "x64-linux-clang",     "inherits": [ "base" ] },
-        { "name": "x64-linux-gnu",       "inherits": [ "base" ] },
-        { "name": "x64-macos-clang",     "inherits": [ "base" ] },
-        { "name": "x64-windows-clang",   "inherits": [ "base" ] },
-        { "name": "x64-windows-msvc",    "inherits": [ "base" ] }
+        { "name": "arm64-linux-clang",   "inherits": [ "base" ], "generator": "Ninja Multi-Config" },
+        { "name": "arm64-linux-gnu",     "inherits": [ "base" ], "generator": "Ninja Multi-Config"},
+        { "name": "arm64-macos-clang",   "inherits": [ "base" ], "generator": "Xcode" },
+        { "name": "arm64-windows-clang", "inherits": [ "base" ], "generator": "Visual Studio 17 2022", "architecture": "ARM64", "toolset": "ClangCl" },
+        { "name": "arm64-windows-msvc",  "inherits": [ "base" ], "generator": "Visual Studio 17 2022", "architecture": "ARM64", "toolset": "v143" },
+
+        { "name": "x64-linux-clang",   "inherits": [ "base" ], "generator": "Ninja Multi-Config" },
+        { "name": "x64-linux-gnu",     "inherits": [ "base" ], "generator": "Ninja Multi-Config"},
+        { "name": "x64-macos-clang",   "inherits": [ "base" ], "generator": "Xcode" },
+        { "name": "x64-windows-clang", "inherits": [ "base" ], "generator": "Visual Studio 17 2022", "architecture": "x64", "toolset": "ClangCl" },
+        { "name": "x64-windows-msvc",  "inherits": [ "base" ], "generator": "Visual Studio 17 2022", "architecture": "x64", "toolset": "v143" }
 
     ]
 }

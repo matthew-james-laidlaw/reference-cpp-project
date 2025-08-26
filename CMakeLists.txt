@@ -14,6 +14,11 @@ find_package(GTest CONFIG REQUIRED)
 # cmake cxx variables
 set(CMAKE_CXX_STANDARD 23)
 
+if(SANITIZERS)
+    add_compile_options(-fsanitize=${SANITIZERS})
+    add_link_options(-fsanitize=${SANITIZERS})
+endif()
+
 # initialize test executable
 add_executable(unit_tests)
 target_link_libraries(unit_tests GTest::gtest_main)
