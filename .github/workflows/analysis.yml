@@ -4,7 +4,7 @@ on: workflow_call
 
 jobs:
 
-  analysis:
+  clang-tidy:
     runs-on: ubuntu-24.04
 
     steps:
@@ -18,7 +18,7 @@ jobs:
       - name: Install Tools
         run: |
           sudo apt update
-          sudo apt install -y clang-tidy cppcheck
+          sudo apt install -y clang-tidy
 
       - name: Configure
         run: >
