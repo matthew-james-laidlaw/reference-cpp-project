@@ -3,17 +3,17 @@ name: sanitizers
 on: workflow_call
 
 jobs:
-  build:
+  sanitizers:
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
       matrix:
         include:
 
-          - { name: linux-asan-ubsan, runs_on: ubuntu-24.04, toolchain: "x64-linux-clang",   sanitizers: "address,undefined" }
-          - { name: linux-tsan,       runs_on: ubuntu-24.04, toolchain: "x64-linux-clang",   sanitizers: "thread"            }
-          - { name: macos-asan,       runs_on: macos-15,     toolchain: "arm64-macos-clang", sanitizers: "address,undefined" }
-          - { name: windows-asan,     runs_on: windows-2025, toolchain: "x64-windows-clang", sanitizers: "address"           }
+          - { name: linux-asan-ubsan, runs_on: ubuntu-24.04, preset: "x64-linux-clang",   sanitizers: "address,undefined" }
+          - { name: linux-tsan,       runs_on: ubuntu-24.04, preset: "x64-linux-clang",   sanitizers: "thread"            }
+          - { name: macos-asan,       runs_on: macos-15,     preset: "arm64-macos-clang", sanitizers: "address,undefined" }
+          - { name: windows-asan,     runs_on: windows-2025, preset: "x64-windows-clang", sanitizers: "address"           }
 
     runs-on: ${{ matrix.runs_on }}
 
@@ -26,10 +26,10 @@ jobs:
         run: echo "VCPKG_ROOT=$VCPKG_INSTALLATION_ROOT" >> "$GITHUB_ENV"
 
       - name: Configure
-        run: cmake --preset ${{ matrix.toolchain }} -DCMAKE_BUILD_TYPE=Debug -DSANITIZERS=${{ matrix.sanitizers }}
+        run: cmake --preset ${{ matrix.preset }} -DCMAKE_BUILD_TYPE=Debug -DSANITIZERS=${{ matrix.sanitizers }}
 
       - name: Build
-        run: cmake --build build/${{ matrix.toolchain }} --config Debug --parallel
+        run: cmake --build build/${{ matrix.preset }} --config Debug --parallel
 
       - name: Test
-        run: ctest --test-dir build/${{ matrix.toolchain }} --build-config Debug --parallel --no-tests=error
+        run: ctest --test-dir build/${{ matrix.preset }} --build-config Debug --parallel --no-tests=error

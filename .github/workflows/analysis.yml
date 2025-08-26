@@ -1,0 +1,32 @@
+name: analysis
+
+on: workflow_call
+
+jobs:
+
+  analysis:
+    runs-on: ubuntu-24.04
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Set VCPKG_ROOT
+        shell: bash
+        run: echo "VCPKG_ROOT=$VCPKG_INSTALLATION_ROOT" >> "$GITHUB_ENV"
+
+      - name: Install Tools
+        run: |
+          sudo apt update
+          sudo apt install -y clang-tidy cppcheck
+
+      - name: Configure
+        run: >
+          cmake --preset x64-linux-clang
+          -DCMAKE_BUILD_TYPE=Debug
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          -DCMAKE_C_CLANG_TIDY="clang-tidy;-warnings-as-errors"
+          -DCMAKE_CXX_CLANG_TIDY="clang-tidy;-warnings-as-errors"
+      
+      - name: Build
+        run: cmake --build build/x64-linux-clang --config Debug --parallel

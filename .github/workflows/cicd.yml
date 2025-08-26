@@ -4,6 +4,9 @@ on: [ push, pull_request, workflow_dispatch ]
 
 jobs:
 
+    analysis:
+        uses: ./.github/workflows/analysis.yml
+
     package:
         uses: ./.github/workflows/package.yml
 

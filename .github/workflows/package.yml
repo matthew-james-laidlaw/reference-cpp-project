@@ -3,7 +3,7 @@ name: package
 on: workflow_call
 
 jobs:
-  build:
+  package:
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
