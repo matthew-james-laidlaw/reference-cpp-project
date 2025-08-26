@@ -29,7 +29,7 @@ jobs:
         run: cmake --preset ${{ matrix.toolchain }} -DCMAKE_BUILD_TYPE=Release -DSANITIZERS=${{ matrix.sanitizers }}
 
       - name: Build
-        run: cmake --build build/${{ matrix.toolchain }} --config Release --target all --parallel
+        run: cmake --build build/${{ matrix.toolchain }} --config Release --parallel
 
       - name: Test
         run: ctest --test-dir build/${{ matrix.toolchain }} --build-config Release --parallel

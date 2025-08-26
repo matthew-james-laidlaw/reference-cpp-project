@@ -35,7 +35,7 @@ jobs:
         run: cmake --preset ${{ matrix.name }} -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
-        run: cmake --build build/${{ matrix.name }} --config Release --target all --parallel
+        run: cmake --build build/${{ matrix.name }} --config Release --parallel
 
       - name: Test
         run: ctest --test-dir build/${{ matrix.name }} --build-config Release --parallel
