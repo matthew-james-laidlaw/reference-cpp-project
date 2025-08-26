@@ -1,6 +1,6 @@
 name: sanitizers
 
-on: [ push, pull_request, workflow_dispatch ]
+on: workflow_call
 
 jobs:
   build:
