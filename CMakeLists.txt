@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.29.3)
 project(REFERENCE CXX)
 
 # third party includes
+include(CTest)
 include(GoogleTest)
 
 # internal includes

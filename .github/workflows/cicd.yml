@@ -38,10 +38,10 @@ jobs:
         run: cmake --build build/${{ matrix.name }} --config Release --parallel
 
       - name: Test
-        run: ctest --test-dir build/${{ matrix.name }} --build-config Release --parallel
+        run: ctest --test-dir build/${{ matrix.name }} --build-config Release --parallel --no-tests=error
 
       - name: Package
-        run: cpack -G ZIP --config build/${{ matrix.name }}/CPackConfig.cmake -B artifacts/${{ matrix.name }} -C Release --no-tests=error
+        run: cpack -G ZIP --config build/${{ matrix.name }}/CPackConfig.cmake -B artifacts/${{ matrix.name }} -C Release
 
       - name: Upload
         uses: actions/upload-artifact@v4

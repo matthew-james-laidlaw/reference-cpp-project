@@ -26,10 +26,10 @@ jobs:
         run: echo "VCPKG_ROOT=$VCPKG_INSTALLATION_ROOT" >> "$GITHUB_ENV"
 
       - name: Configure
-        run: cmake --preset ${{ matrix.toolchain }} -DCMAKE_BUILD_TYPE=Release -DSANITIZERS=${{ matrix.sanitizers }}
+        run: cmake --preset ${{ matrix.toolchain }} -DCMAKE_BUILD_TYPE=Debug -DSANITIZERS=${{ matrix.sanitizers }}
 
       - name: Build
-        run: cmake --build build/${{ matrix.toolchain }} --config Release --parallel
+        run: cmake --build build/${{ matrix.toolchain }} --config Debug --parallel
 
       - name: Test
-        run: ctest --test-dir build/${{ matrix.toolchain }} --build-config Release --parallel --no-tests=error
+        run: ctest --test-dir build/${{ matrix.toolchain }} --build-config Debug --parallel --no-tests=error
