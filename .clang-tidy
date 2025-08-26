@@ -1,0 +1,15 @@
+Checks: >
+  -*
+  bugprone-*
+  clang-analyzer-*,
+  cppcoreguidelines-*,
+  modernize-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  misc-unused-parameters,
+  misc-unused-using-decls
+
+WarningsAsErrors: '*'
+
+HeaderFilterRegex: '^(apps|libs)/'
