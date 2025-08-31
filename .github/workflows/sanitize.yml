@@ -10,10 +10,10 @@ jobs:
       matrix:
         include:
 
-          - { name: linux-asan-ubsan, runs_on: ubuntu-24.04, preset: "linux-clang",   sanitizers: "address,undefined" }
-          - { name: linux-tsan,       runs_on: ubuntu-24.04, preset: "linux-clang",   sanitizers: "thread"            }
-          - { name: macos-asan,       runs_on: macos-15,     preset: "macos-clang",   sanitizers: "address,undefined" }
-          - { name: windows-asan,     runs_on: windows-2025, preset: "windows-clang", sanitizers: "address"           }
+          - { name: linux-asan-ubsan, runs_on: ubuntu-24.04, preset: "linux-clang",   sanitizers: "address,undefined", config: "Debug"   }
+          - { name: linux-tsan,       runs_on: ubuntu-24.04, preset: "linux-clang",   sanitizers: "thread",            config: "Debug"   }
+          - { name: macos-asan,       runs_on: macos-15,     preset: "macos-clang",   sanitizers: "address,undefined", config: "Debug"   }
+          - { name: windows-asan,     runs_on: windows-2025, preset: "windows-clang", sanitizers: "address",           config: "Release" }
 
     runs-on: ${{ matrix.runs_on }}
 
@@ -26,10 +26,10 @@ jobs:
         run: echo "VCPKG_ROOT=$VCPKG_INSTALLATION_ROOT" >> "$GITHUB_ENV"
 
       - name: Configure
-        run: cmake --preset ${{ matrix.preset }} -DCMAKE_BUILD_TYPE=Debug -DSANITIZERS=${{ matrix.sanitizers }}
+        run: cmake --preset ${{ matrix.preset }} -DSANITIZERS=${{ matrix.sanitizers }}
 
       - name: Build
-        run: cmake --build build/${{ matrix.preset }} --config Debug --parallel
+        run: cmake --build build/${{ matrix.preset }} --config ${{ matrix.config }} --parallel
 
       - name: Test
-        run: ctest --test-dir build/${{ matrix.preset }} --build-config Debug --parallel --no-tests=error
+        run: ctest --test-dir build/${{ matrix.preset }} --build-config ${{ matrix.config }} --parallel --no-tests=error
