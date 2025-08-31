@@ -4,11 +4,11 @@ on: [ push, pull_request, workflow_dispatch ]
 
 jobs:
 
-    analysis:
-        uses: ./.github/workflows/analysis.yml
-
-    package:
-        uses: ./.github/workflows/package.yml
-
-    sanitizers:
-        uses: ./.github/workflows/sanitizers.yml
+    analyze:
+        uses: ./.github/workflows/analyze.yml
+        
+    sanitize:
+        uses: ./.github/workflows/sanitize.yml
+    
+    test:
+        uses: ./.github/workflows/test.yml

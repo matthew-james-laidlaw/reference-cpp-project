@@ -9,6 +9,7 @@ Checks: >
   readability-*,
   misc-unused-parameters,
   misc-unused-using-decls
+  -readability-identifier-length
 
 WarningsAsErrors: '*'
 

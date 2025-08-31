@@ -31,5 +31,14 @@ add_subdirectory(apps)
 # finalize test executable
 gtest_discover_tests(unit_tests)
 
-set(CPACK_PACKAGE_FILE_NAME "${TARGET_TRIPLE}-${CPACK_PACKAGE_VERSION}")
+string(TOUPPER ${CMAKE_HOST_SYSTEM_PROCESSOR} HOST_SYSTEM_PROCESSOR_UPPER)
+if(HOST_SYSTEM_PROCESSOR_UPPER MATCHES "^(AARCH64|ARM64)$")
+    set(ARCHITECTURE "arm64")
+elseif(HOST_SYSTEM_PROCESSOR_UPPER MATCHES "^(AMD64|X64|X86_64)$")
+    set(ARCHITECTURE "x64")
+else()
+    message(FATAL_ERROR "Unknown architecture: ${CMAKE_HOST_SYSTEM_PROCESSOR}")
+endif()
+
+set(CPACK_PACKAGE_FILE_NAME "${TARGET_NAME}-${ARCHITECTURE}")
 include(CPack)

@@ -1,30 +1,38 @@
 {
     "version": 8,
+    "include": [
+        "cmake/presets/platform-presets.json"
+    ],
     "configurePresets": [
-
         {
-            "name": "base",
-            "hidden": true,
-            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-            "binaryDir": "build/${presetName}",
+            "name": "linux-clang",
+            "inherits": [ "linux" ],
             "cacheVariables": {
-                "CPACK_INCLUDE_TOPLEVEL_DIRECTORY": "OFF",
-                "TARGET_TRIPLE": "${presetName}",
-                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/${presetName}.cmake"
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
             }
         },
-
-        { "name": "arm64-linux-clang",   "inherits": [ "base" ], "generator": "Ninja Multi-Config" },
-        { "name": "arm64-linux-gnu",     "inherits": [ "base" ], "generator": "Ninja Multi-Config"},
-        { "name": "arm64-macos-clang",   "inherits": [ "base" ], "generator": "Xcode" },
-        { "name": "arm64-windows-clang", "inherits": [ "base" ], "generator": "Visual Studio 17 2022", "architecture": "ARM64", "toolset": "ClangCl" },
-        { "name": "arm64-windows-msvc",  "inherits": [ "base" ], "generator": "Visual Studio 17 2022", "architecture": "ARM64", "toolset": "v143" },
-
-        { "name": "x64-linux-clang",   "inherits": [ "base" ], "generator": "Ninja Multi-Config" },
-        { "name": "x64-linux-gnu",     "inherits": [ "base" ], "generator": "Ninja Multi-Config"},
-        { "name": "x64-macos-clang",   "inherits": [ "base" ], "generator": "Xcode" },
-        { "name": "x64-windows-clang", "inherits": [ "base" ], "generator": "Visual Studio 17 2022", "architecture": "x64", "toolset": "ClangCl" },
-        { "name": "x64-windows-msvc",  "inherits": [ "base" ], "generator": "Visual Studio 17 2022", "architecture": "x64", "toolset": "v143" }
-
+        {
+            "name": "linux-gnu",
+            "inherits": [ "linux" ],
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++"
+            }
+        },
+        {
+            "name": "macos-clang",
+            "inherits": [ "macos" ]
+        },
+        {
+            "name": "windows-clang",
+            "inherits": [ "windows" ],
+            "toolset": "ClangCl"
+        },
+        {
+            "name": "windows-msvc",
+            "inherits": [ "windows" ],
+            "toolset": "v143"
+        }
     ]
 }

@@ -1,19 +1,19 @@
-name: sanitizers
+name: sanitize
 
 on: workflow_call
 
 jobs:
-  sanitizers:
+  sanitize:
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
       matrix:
         include:
 
-          - { name: linux-asan-ubsan, runs_on: ubuntu-24.04, preset: "x64-linux-clang",   sanitizers: "address,undefined" }
-          - { name: linux-tsan,       runs_on: ubuntu-24.04, preset: "x64-linux-clang",   sanitizers: "thread"            }
-          - { name: macos-asan,       runs_on: macos-15,     preset: "arm64-macos-clang", sanitizers: "address,undefined" }
-          - { name: windows-asan,     runs_on: windows-2025, preset: "x64-windows-clang", sanitizers: "address"           }
+          - { name: linux-asan-ubsan, runs_on: ubuntu-24.04, preset: "linux-clang",   sanitizers: "address,undefined" }
+          - { name: linux-tsan,       runs_on: ubuntu-24.04, preset: "linux-clang",   sanitizers: "thread"            }
+          - { name: macos-asan,       runs_on: macos-15,     preset: "macos-clang",   sanitizers: "address,undefined" }
+          - { name: windows-asan,     runs_on: windows-2025, preset: "windows-clang", sanitizers: "address"           }
 
     runs-on: ${{ matrix.runs_on }}
 

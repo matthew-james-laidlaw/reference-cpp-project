@@ -1,0 +1,29 @@
+{
+    "version": 8,
+    "include": [
+        "base-preset.json"
+    ],
+    "configurePresets": [
+        {
+            "name": "linux",
+            "hidden": true,
+            "inherits": "base",
+            "generator": "Ninja Multi-Config",
+            "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" }
+        },
+        {
+            "name": "macos",
+            "hidden": true,
+            "inherits": "base",
+            "generator": "Xcode",
+            "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Darwin" }
+        },
+        {
+            "name": "windows",
+            "hidden": true,
+            "inherits": "base",
+            "generator": "Visual Studio 17 2022",
+            "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" }
+        }
+    ]
+}
