@@ -17,7 +17,7 @@ jobs:
           - { name: linux-gnu-arm64,     preset: linux-gnu,     runs_on: ubuntu-24.04-arm }
           - { name: linux-gnu-x64,       preset: linux-gnu,     runs_on: ubuntu-24.04     }
           - { name: macos-clang-arm64,   preset: macos-clang,   runs_on: macos-15         }
-          - { name: macos-clang-x64,     preset: macos-clang,   runs_on: macos-14         }
+          - { name: macos-clang-x64,     preset: macos-clang,   runs_on: macos-13         }
           - { name: windows-clang-arm64, preset: windows-clang, runs_on: windows-11-arm   }
           - { name: windows-clang-x64,   preset: windows-clang, runs_on: windows-2025     }
           - { name: windows-msvc-arm64,  preset: windows-msvc,  runs_on: windows-11-arm   }
