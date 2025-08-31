@@ -32,4 +32,4 @@ jobs:
         run: cmake --build build/${{ matrix.preset }} --config ${{ matrix.config }} --parallel
 
       - name: Test
-        run: ctest --test-dir build/${{ matrix.preset }} --build-config ${{ matrix.config }} --parallel --no-tests=error
+        run: ctest --test-dir build/${{ matrix.preset }} --build-config ${{ matrix.config }} --parallel --no-tests=error --output-on-failure

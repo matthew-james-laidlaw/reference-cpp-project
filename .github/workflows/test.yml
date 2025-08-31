@@ -40,7 +40,7 @@ jobs:
         run: cmake --build build/${{ matrix.preset }} --config Release --parallel
 
       - name: Test
-        run: ctest --test-dir build/${{ matrix.preset }} --build-config Release --parallel --no-tests=error
+        run: ctest --test-dir build/${{ matrix.preset }} --build-config Release --parallel --no-tests=error --output-on-failure
 
       - name: Package
         run: cpack -G ZIP --config build/${{ matrix.preset }}/CPackConfig.cmake -B artifacts/${{ matrix.name }} -C Release
