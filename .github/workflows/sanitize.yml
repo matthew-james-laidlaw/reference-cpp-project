@@ -10,10 +10,10 @@ jobs:
       matrix:
         include:
 
-          - { name: linux-asan-ubsan, runs_on: ubuntu-24.04, preset: "linux-clang",   sanitizers: "address,undefined", config: "Debug"   }
-          - { name: linux-tsan,       runs_on: ubuntu-24.04, preset: "linux-clang",   sanitizers: "thread",            config: "Debug"   }
-          - { name: macos-asan,       runs_on: macos-15,     preset: "macos-clang",   sanitizers: "address,undefined", config: "Debug"   }
-          - { name: windows-asan,     runs_on: windows-2025, preset: "windows-clang", sanitizers: "address",           config: "Release" }
+          - { name: linux-asan-ubsan, runs_on: ubuntu-24.04, preset: "linux-clang",  sanitizers: "address,undefined", config: "Debug"   }
+          - { name: linux-tsan,       runs_on: ubuntu-24.04, preset: "linux-clang",  sanitizers: "thread",            config: "Debug"   }
+          - { name: macos-asan,       runs_on: macos-15,     preset: "macos-clang",  sanitizers: "address,undefined", config: "Debug"   }
+          - { name: windows-asan,     runs_on: windows-2025, preset: "windows-msvc", sanitizers: "address",           config: "Release" }
 
     runs-on: ${{ matrix.runs_on }}
 
