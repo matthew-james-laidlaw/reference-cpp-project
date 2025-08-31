@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:      
+        include:
           - { name: linux-clang-arm64,   preset: linux-clang,   runs_on: ubuntu-24.04-arm }
           - { name: linux-clang-x64,     preset: linux-clang,   runs_on: ubuntu-24.04     }
           - { name: linux-gnu-arm64,     preset: linux-gnu,     runs_on: ubuntu-24.04-arm }

@@ -1,9 +1,17 @@
 {
     "version": 8,
-    "include": [
-        "base-preset.json"
-    ],
     "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+            "binaryDir": "build/${presetName}",
+            "cacheVariables": {
+                "CPACK_INCLUDE_TOPLEVEL_DIRECTORY": "OFF",
+                "TARGET_NAME": "${presetName}"
+            },
+            "condition": { "type": "notEquals", "lhs": "$env{VCPKG_ROOT}", "rhs": "" }
+        },
         {
             "name": "linux",
             "hidden": true,
