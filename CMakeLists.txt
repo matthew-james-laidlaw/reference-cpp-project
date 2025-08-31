@@ -16,8 +16,13 @@ find_package(GTest CONFIG REQUIRED)
 set(CMAKE_CXX_STANDARD 23)
 
 if(SANITIZERS)
-    add_compile_options(-fsanitize=${SANITIZERS})
-    add_link_options(-fsanitize=${SANITIZERS})
+    if(MSVC)
+        add_compile_options(/fsanitize=${SANITIZERS} /Zi)
+        add_link_options(/DEBUG)
+    else()
+        add_compile_options(-fsanitize=${SANITIZERS})
+        add_link_options(-fsanitize=${SANITIZERS})
+    endif()
 endif()
 
 # initialize test executable
